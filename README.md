@@ -37,4 +37,4 @@ flask run --port 5000
   
 Now you must be able to go to http://127.0.0.1:5000/ and play with the application:
   
-  ![alt tag](https://github.com/victorcouste/dataprep-explorer/blob/master/Search_BigQuery_tables_with_Cloud_Dataprep_Metadata_Tag.png)
+  ![alt tag](https://github.com/victorcouste/dataprep-datacatalog-explorer/blob/master/Search_BigQuery_tables_with_Cloud_Dataprep_Metadata_Tag.png)
