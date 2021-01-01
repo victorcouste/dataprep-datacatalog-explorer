@@ -3,7 +3,7 @@
 
 A simple Web application to explore BigQuery tables tagged in [Google Cloud Data Catalog](https://cloud.google.com/data-catalog/) with [Cloud Dataprep](https://cloud.google.com/dataprep) tags.
 
- ![alt tag](https://github.com/victorcouste/dataprep-datacatalog-explorer/blob/master/static/dataprep_datacatalog_explorer.png)
+<img src="https://github.com/victorcouste/dataprep-datacatalog-explorer/blob/master/static/dataprep_datacatalog_explorer.png" width="50%" height="50%">
 
 This application creates all the necessary Dataprep objects (Dataset, Flow and Recipe) and generate URLs to the Dataprep interfaces.
 
