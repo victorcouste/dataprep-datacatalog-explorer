@@ -5,7 +5,7 @@ A simple Web application to explore BigQuery tables tagged in [Google Cloud Data
 
 <img src="https://github.com/victorcouste/dataprep-datacatalog-explorer/blob/master/static/dataprep_datacatalog_explorer.png" width="50%" height="50%">
 
-This application creates all the necessary Dataprep objects (Dataset, Flow and Recipe) and generate URLs to the Dataprep interfaces.
+This application search all BigQuery tables in Google Cloud Data Catalog with a Cloud Dataprep metadata tag. You can also filter the request with Dataprep Flow name or Dataprep user email.
 
 This Web application use Python Flask Web framework and <a href="https://googleapis.dev/python/datacatalog/latest/index.html#" target="_blank">Python Client for Google Cloud Data Catalog API</a> to search in Data Catalog.
 
@@ -27,7 +27,12 @@ If need more details on Flask framework installation and configuration, [see her
 
 1/ Update the **key_path** parameter in [datacatalog_functions.py](https://github.com/victorcouste/dataprep-datacatalog-explorer/blob/master/datacatalog_functions.py) Python file. This parameter set your <a href="https://googleapis.dev/python/google-api-core/latest/auth.html#service-accounts" target="_blank">service account json key file to authenticating to Google Cloud services</a>.
 
-2/ Start the Flask Web app
+2/ Update the 2 parameters in [datacatalog_functions.py](https://github.com/victorcouste/dataprep-datacatalog-explorer/blob/master/datacatalog_functions.py) Python file:
+
+* gcp_project  : The GCP project where to search your BigQuery tables
+* dataprep_metadata_tag_template : The name (id) of the Dataprep Tag Template
+
+3/ Start the Flask Web app
 
 In the Dataprep Explorer directory run:
 ```shell script
