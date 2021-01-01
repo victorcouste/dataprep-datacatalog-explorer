@@ -32,13 +32,13 @@ If need more details on Flask framework installation and configuration, [see her
 2/ Update the 2 parameters in [datacatalog_functions.py](https://github.com/victorcouste/dataprep-datacatalog-explorer/blob/master/datacatalog_functions.py) Python file:
 
 * **gcp_project**  : The GCP project where to search your BigQuery tables
-* **dataprep_metadata_tag_template** : The name (id) of the Dataprep Tag Template
+* **dataprep_metadata_tag_template** : The name (id) of the Dataprep metadata tag template
 
 3/ Start the Flask Web app
 
 In the Dataprep Explorer directory run:
 ```shell script
-FLASK_APP=datataprep-explorer.py
+FLASK_APP=datataprep-datacatalog-explorer.py
 flask run --port 5000
 ```
   
