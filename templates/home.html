@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search BigQuery tables with Cloud Dataprep Metadata Tag</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+</head>
+<body>
+<div class="section">
+    <div class="container">
+        <h1><b>BigQuery tables with Cloud Dataprep Metadata Tag</b></h1>
+        <br>
+        &nbsp;&nbsp;&nbsp;<img src="{{ url_for('static', filename='dataprep_datacatalog_explorer.png') }}" width="20%" height="20%">
+        <br><br>
+        <p>Search BigQuery tables with <a href="https://cloud.google.com/dataprep" target="_blank">Cloud Dataprep</a> metadata tags.
+        <br>
+        Tags are stored in <a href="https://cloud.google.com/data-catalog" target="_blank">Google Cloud Data Catalog</a>.
+        <br>
+        Search can be filtered by Dataprep Flow name or Datapre user account.
+
+        </p>
+        <br>
+
+        <br>
+        <form method="post" class="form-inline">
+            <table border="0">
+                <tr style="height: 30px;">
+                    <td style="padding-right: 10px"><label>Dataprep Flow</label></td>
+                    <td><input autofocus="autofocus" style="width:500px" type="text" placeholder="Dataprep Flow name" name="dataprep_flow"
+                               value="{{ dataprep_flow }}"></td>
+                </tr>
+                <tr>
+                    <td style="padding-right: 10px"><label>Dataprep User</label></td>
+                    <td><input style="width:500px" placeholder="Dataprep user email"
+                               name="dataprep_user" value="{{ dataprep_user }}"></td>
+                </tr>
+            </table>
+            <br>
+            <button type="submit">Get BigQuery tables and Cloud Dataprep tags</button>
+
+        </form>
+        <br>
+
+        {% if dataprep_flow != '' %}
+            Results for Dataprep Flows with name containing <b>{{ dataprep_flow }}</b>
+        {% elif dataprep_user != '' %}
+            Results for Dataprep users with email containing <b>{{ dataprep_user }}</b>
+        {% else %}
+            Results for all Dataprep Flows and users
+        {% endif %}
+
+        <br>
+        <br>
+            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                <tr>
+                        <th>BigQuery Table</th>
+                        <th>Dataprep User</th>
+                        <th>Dataprep Job</th>
+                        <th>Dataprep Job Date</th>
+                        <th>Dataprep Result Profile</th>
+                        <th>Dataprep Dataset</th>
+                        <th>Dataprep Flow</th>                      
+                </tr>
+
+                {% for table_tag in datacatalog_tables_tags %}
+                <tr>
+                        <td><a href="{{ 'https://console.cloud.google.com/datacatalog/'+table_tag['table']['relative_resource_name'] }}" target="_blank">{{ table_tag["table"]["dataset"]+'.'+table_tag["table"]["name"] }}</a></td>
+                        <td>{{ table_tag["tag"].fields['dataprep_user'].string_value }}</td>
+                        <td><a href="{{ table_tag['tag'].fields['dataprep_job_url'].string_value }}" target="_blank">{{ table_tag["tag"].fields['dataprep_job_id'].string_value }}</a></td>
+                        <td>{{ table_tag["job_date"] }}</td>
+                        <td><a href="{{ table_tag['tag'].fields['dataprep_job_profile'].string_value }}" target="_blank">Result Profile</a></td>
+                        <td><a href="{{ table_tag['tag'].fields['dataprep_dataset_url'].string_value }}" target="_blank">{{ table_tag["tag"].fields['dataprep_dataset_name'].string_value }}</a></td>
+                        <td><a href="{{ table_tag['tag'].fields['dataprep_flow_url'].string_value }}" target="_blank">{{ table_tag["tag"].fields['dataprep_flow_name'].string_value }}</a></td>                        
+
+                </tr>
+                {% endfor %}
+
+            </table>
+
+
+        <br>
+        <p>This application is using <a href="https://googleapis.dev/python/datacatalog/latest/index.html#" target="_blank">Python Client for Google Cloud Data Catalog API</a> to search in Data Catalog.</p>
+
+    </div>
+</div>
+</body>
+</html>
