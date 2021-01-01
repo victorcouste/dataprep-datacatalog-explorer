@@ -29,7 +29,7 @@ If need more details on Flask framework installation and configuration, [see her
 
 1/ Update the **key_path** parameter in [datacatalog_functions.py](https://github.com/victorcouste/dataprep-datacatalog-explorer/blob/master/datacatalog_functions.py) Python file. This parameter set your <a href="https://googleapis.dev/python/google-api-core/latest/auth.html#service-accounts" target="_blank">service account json key file to authenticating to Google Cloud services</a>.
 
-2/ Update the 2 parameters in [datacatalog_functions.py](https://github.com/victorcouste/dataprep-datacatalog-explorer/blob/master/datacatalog_functions.py) Python file:
+2/ Update the 2 parameters in [datataprep-datacatalog-explorer.py](https://github.com/victorcouste/dataprep-datacatalog-explorer/blob/master/datataprep-datacatalog-explorer.py) Python file:
 
 * **gcp_project**  : The GCP project where to search your BigQuery tables
 * **dataprep_metadata_tag_template** : The name (id) of the Dataprep metadata tag template
